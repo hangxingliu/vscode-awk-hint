@@ -1,0 +1,97 @@
+{
+	"The if Statement": {
+		"prefix": "if",
+		"body": [
+			"if ($1) {",
+			"\t$0",
+			"}"
+		]
+	},
+	"The if-else Statement": {
+		"prefix": "ifelse",
+		"body": [
+			"if ($1) {",
+			"\t$2",
+			"} else {",
+			"\t$0",
+			"}"
+		]
+	},
+	"The while Statement": {
+		"prefix": "while",
+		"body": [
+			"while ($1) {",
+			"\t$0",
+			"}"
+		]
+	},
+	"The do-while Statement": {
+		"prefix": "dowhile",
+		"body": [
+			"do{",
+			"\t$0",
+			"} while ($1)"
+		]
+	},
+	"The for Statement": {
+		"prefix": "for",
+		"body": [
+			"for ($1; $2; $3) {",
+			"\t$0",
+			"}"
+		]
+	},
+	"The switch Statement": {
+		"prefix": "switch",
+		"body": [
+			"switch ($1) {",
+			"case $2:",
+			"\t$3",
+			"default:",
+			"\t$0",
+			"}"
+		]
+	},
+	"The break Statement": {
+		"prefix": "break",
+		"body": "break"
+	},
+	"The continue Statement": {
+		"prefix": "continue",
+		"body": "continue"
+	},
+	"The next Statement": {
+		"prefix": "next",
+		"body": "next",
+		"description": "The next statement forces awk to immediately stop processing the current record and go on to the next record. This means that no further rules are executed for the current record, and the rest of the current rule’s action isn’t executed."
+	},
+	"The nextfile Statement": {
+		"prefix": "nextfile",
+		"body": "nextfile",
+		"description": "The nextfile statement is similar to the next statement. However, instead of abandoning processing of the current record, the nextfile statement instructs awk to stop processing the current data file."
+	},
+	"The exit Statement": {
+		"prefix": "exit",
+		"body": "exit ${0}",
+		"description": "The exit statement causes awk to immediately stop executing the current rule and to stop processing input; any remaining input is ignored"
+	},
+	"The BEGIN Special Patterns": {
+		"prefix": "begin",
+		"body": "BEGIN\t{\n\t$0\n}",
+		"description": "A BEGIN rule is executed once only, before the first input record is read"
+	},
+	"The END Special Patterns": {
+		"prefix": "end",
+		"body": "END\t{\n\t$0\n}",
+		"description": "An END rule is executed once only, after all the input is read. "
+	},
+	"Function": {
+		"prefix": "function",
+		"body": [
+			"function ${functionName}(${parameters}) {",
+			"\t$0",
+			"}"
+		]
+	}
+
+}
