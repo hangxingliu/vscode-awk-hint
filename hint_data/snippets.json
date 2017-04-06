@@ -75,6 +75,11 @@
 		"body": "exit ${0}",
 		"description": "The exit statement causes awk to immediately stop executing the current rule and to stop processing input; any remaining input is ignored"
 	},
+	"The print Statement": {
+		"prefix": "print",
+		"body": "print ${0}",
+		"description": "The exit statement causes awk to immediately stop executing the current rule and to stop processing input; any remaining input is ignored"
+	},
 	"The BEGIN Special Patterns": {
 		"prefix": "begin",
 		"body": "BEGIN\t{\n\t$0\n}",
