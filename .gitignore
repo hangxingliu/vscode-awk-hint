@@ -1,3 +1,6 @@
+# ignore vsix
+*.vsix
+
 # Logs
 logs
 *.log

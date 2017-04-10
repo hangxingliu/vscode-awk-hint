@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-npm i @types/request \
-	@types/cheerio \
-	@types/fs-extra \
-	@types/glob \
-	@types/colors
