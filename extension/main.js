@@ -1,6 +1,5 @@
 /// <reference path="../vscode.d.ts" />
-let vscode = require('vscode'),
-	fs = require('fs-extra');
+let vscode = require('vscode');
 
 const HINT_DATA_FILES = {
 	FUNC: `${__dirname}/../hint_data/functions.json`,
