@@ -18,7 +18,7 @@ Launch Code's command palette (<kbd>Ctrl</kbd> + <kbd>P</kbd>) and type
 
 ## Declaration
 
-1. This extension depend extension [`luggage66.awk` developed by Donald Mull Jr][ext-awk] (**It will be install automaticallly by VS Code**)
+1. This extension depend extension [`luggage66.AWK` developed by Donald Mull Jr][ext-awk] (**It will be install automaticallly by VS Code**)
 2. Open source license of this extension is [GPL-3.0](LICENSE)
 
 ## Contributing to the Extension

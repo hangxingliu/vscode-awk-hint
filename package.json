@@ -2,7 +2,7 @@
       "name": "vscode-awk-hint",
       "displayName": "AWK hint",
       "description": "awk autocompletion for VS Code",
-      "version": "0.0.1",
+      "version": "0.0.2",
       "license": "GPL-3.0",
       "publisher": "hangxingliu",
       "author": "hangxingliu",
@@ -23,7 +23,7 @@
       "scripts": {},
 
 
-      "extensionDependencies": ["luggage66.awk"],
+      "extensionDependencies": ["luggage66.AWK"],
       "devDependencies": {
             "vscode": "^1.1.0",
             "fs-extra": "*",
