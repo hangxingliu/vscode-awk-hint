@@ -25,14 +25,38 @@ You can report bug or send a feature suggestion in [Github Issues Page][issues].
 
 ## Contributing to the Extension
 
-File description:
+### 1. Supporting me coffee via Paypal
 
-- `utils/*.js` scripts for getting hint data from gnu awk document web page
-- `extension/main.js` extension main script files
-- `icon/icon.svg` extension icon image source svg file
-- `hint_data/*.json` hint data json file generated automatically(But `snippets.json` written by me)
+[Supporting me coffee](paypal) could encourage me to make my vscode extensions better and better!
+(and add more and more features).
 
-[Pull Request](pr)
+### 2. Submit issue on Github
+
+Found a bug, feature request or question. You can submit issue on [Github Issue Page][issues];
+
+### 3. Cook by yourself
+
+0. prepare node.js environment
+1. fork this repo on Github, then clone it to local
+2. execute `npm install --save-dev`
+3. modify/fix it
+4. please remember `npm test` for unit tets
+5. give a [pull request][pr]
+
+Project structure:
+
+- `extension`: extension codes
+	- `main.js`: entry file of extension
+	- `parser/awk.js`: awk semantic parser
+	- `vscode.d.ts` & `index.d.ts`: typing files for auto-completion
+- `hint-data`: hint data json file generated automatically(But `snippets.json` is written by me)
+- `icon`: png and svg icon images for this extension
+- `test`: unit tests
+- `utils`: utilities (scripts for fetch awk hint data)
+
+## License
+
+[GPL-3.0](LICENSE)
 
 ## Author
 
@@ -43,3 +67,4 @@ File description:
 [ext-awk]: https://marketplace.visualstudio.com/items?itemName=luggage66.awk
 [issues]: https://github.com/hangxingliu/vscode-awk-hint/issues
 [pr]: https://github.com/hangxingliu/vscode-awk-hint/pulls
+[paypal]: https://www.paypal.me/hangxingliu

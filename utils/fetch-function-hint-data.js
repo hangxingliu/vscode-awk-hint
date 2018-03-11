@@ -5,11 +5,11 @@ const OK = '- ' + 'OK'.green,
 	ERROR = '- ' + 'ERROR'.red,
 	DONE = '- ' + 'DONE'.green.bold;
 
-const OUTPUT_FILE = `${__dirname}/../hint_data/functions.json`;
+const OUTPUT_FILE = `${__dirname}/../hint-data/functions.json`;
 
 let error = reason => console.error(ERROR, '\n', reason) + process.exit(1),
 	notEmptyFilter = (arrayOrStr, name) => arrayOrStr.length ? arrayOrStr : error(`${name.bold} is empty!`),
-	newFunctionObject = () => ({ 
+	newFunctionObject = () => ({
 		set: 'setName',
 		name: 'funcName',
 		usage: 'funcName(parameters...)',
@@ -22,7 +22,7 @@ let cheerio = require('cheerio'),
 	request = require('request'),
 	fs = require('fs-extra');
 
-let url = require('./_awk_website_url');
+let url = require('./awk-manual-urls');
 
 let funcSetNames = Object.keys(url.builtInFunctions);
 let funcHintObjects = [];
@@ -34,7 +34,7 @@ function getFuncSetHint() {
 	if (funcSetNames.length === 0) {
 		console.log(`total ${String(funcHintObjects.length).bold} functions`);
 		console.log("Writing function hint data to file ...");
-		fs.writeJSONSync(OUTPUT_FILE, funcHintObjects);
+		fs.writeJSONSync(OUTPUT_FILE, funcHintObjects, { spaces: 2 });
 		return console.log(DONE);
 	}
 
@@ -55,7 +55,7 @@ function getFuncSetHint() {
 
 		let funcObjectsQueue = [];
 		let count = 0;
-		
+
 		items.each(index => {
 			let context = items.eq(index);
 			if (context.prop('tagName') == 'DT') {
@@ -66,7 +66,7 @@ function getFuncSetHint() {
 				obj.name = obj.name[1];
 				funcObjectsQueue.push(obj);
 				return;
-			} //else if (item.tagName == 'dd') 
+			} //else if (item.tagName == 'dd')
 			if (!funcObjectsQueue.length)
 				return console.log(` WARN: empty funcObjectsQueue, item[${index}]`);
 			// let link = notEmptyFilter(context.find('a[name]'), `<a name></a> of item[${index}]`).eq(0).attr('name');

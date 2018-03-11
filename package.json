@@ -27,6 +27,7 @@
 	"main": "./extension/main",
 	"scripts": {
 		"fetch-vscode-dts": "node ./extension/vscode.d.ts/FETCH.js",
+		"fetch-hint-data": "node ./utils/fetch-function-hint-data.js && node ./utils/fetch-variable-hint-data.js",
 		"test": "node ./node_modules/.bin/_mocha test/**/*.js --delay"
 	},
 	"extensionDependencies": [
@@ -59,7 +60,7 @@
 		"snippets": [
 			{
 				"language": "awk",
-				"path": "./hint_data/snippets.json"
+				"path": "./hint-data/snippets.json"
 			}
 		]
 	},

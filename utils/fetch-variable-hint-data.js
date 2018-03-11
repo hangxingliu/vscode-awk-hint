@@ -5,11 +5,11 @@ const OK = '- ' + 'OK'.green,
 	ERROR = '- ' + 'ERROR'.red,
 	DONE = '- ' + 'DONE'.green.bold;
 
-const OUTPUT_FILE = `${__dirname}/../hint_data/variables.json`;
+const OUTPUT_FILE = `${__dirname}/../hint-data/variables.json`;
 
 let error = reason => console.error(ERROR, '\n', reason) + process.exit(1),
 	notEmptyFilter = (arrayOrStr, name) => arrayOrStr.length ? arrayOrStr : error(`${name.bold} is empty!`),
-	newVariableObject = () => ({ 
+	newVariableObject = () => ({
 		set: 'setName',
 		name: 'varName',
 		onlyGAWK: false,
@@ -22,7 +22,7 @@ let cheerio = require('cheerio'),
 	request = require('request'),
 	fs = require('fs-extra');
 
-let url = require('./_awk_website_url');
+let url = require('./awk-manual-urls');
 
 let varSetNames = Object.keys(url.builtInVariables);
 let varHintObjects = [];
@@ -34,7 +34,7 @@ function getVarSetHint() {
 	if (varSetNames.length === 0) {
 		console.log(`total ${String(varHintObjects.length).bold} variables`);
 		console.log("Writing variable hint data to file ...");
-		fs.writeJSONSync(OUTPUT_FILE, varHintObjects);
+		fs.writeJSONSync(OUTPUT_FILE, varHintObjects, { spaces: 2 });
 		return console.log(DONE);
 	}
 
@@ -55,7 +55,7 @@ function getVarSetHint() {
 
 		let varObjectsQueue = [];
 		let count = 0;
-		
+
 		items.each(index => {
 			let context = items.eq(index);
 			if (context.prop('tagName') == 'DT') {
@@ -70,7 +70,7 @@ function getVarSetHint() {
 					varObjectsQueue.push(obj);
 				});
 				return;
-			} //else if (item.tagName == 'dd') 
+			} //else if (item.tagName == 'dd')
 			if (!varObjectsQueue.length)
 				return console.log(` WARN: empty varObjectsQueue, item[${index}]`);
 			// let link = notEmptyFilter(context.find('a[name]'), `<a name></a> of item[${index}]`).eq(0).attr('name');

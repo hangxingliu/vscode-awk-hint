@@ -4,8 +4,8 @@
 let vscode = require('vscode');
 
 const HINT_DATA_FILES = {
-	FUNC: `${__dirname}/../hint_data/functions.json`,
-	VAR: `${__dirname}/../hint_data/variables.json`
+	FUNC: `${__dirname}/../hint-data/functions.json`,
+	VAR: `${__dirname}/../hint-data/variables.json`
 };
 
 const QUOTES = '\'\"';
