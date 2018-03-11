@@ -25,7 +25,9 @@
 		"autocompletion"
 	],
 	"main": "./extension/main",
-	"scripts": {},
+	"scripts": {
+		"fetch-vscode-dts": "node ./extension/vscode.d.ts/FETCH.js"
+	},
 	"extensionDependencies": [
 		"luggage66.AWK"
 	],

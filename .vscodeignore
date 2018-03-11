@@ -1,6 +1,6 @@
 icon/icon.svg
 test_awk_files/**
 utils/**
-vscode.d.ts
+extension/vscode.d.ts
 *.tgz
 *.vsix

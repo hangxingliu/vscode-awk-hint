@@ -3,4 +3,3 @@ test_awk_files
 utils/cache
 *.vsix
 *.tgz
-vscode.d.ts
