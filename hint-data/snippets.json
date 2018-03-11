@@ -82,13 +82,17 @@
 	},
 	"The BEGIN Special Patterns": {
 		"prefix": "begin",
-		"body": "BEGIN\t{\n\t$0\n}",
+		"body": "BEGIN {\n\t$0\n}",
 		"description": "A BEGIN rule is executed once only, before the first input record is read"
 	},
 	"The END Special Patterns": {
 		"prefix": "end",
-		"body": "END\t{\n\t$0\n}",
+		"body": "END {\n\t$0\n}",
 		"description": "An END rule is executed once only, after all the input is read. "
+	},
+	"Line number Patterns": {
+		"prefix": "linenumber",
+		"body": "NR >= ${1} && NR <= ${2} {\n\t$0\n}"
 	},
 	"Function": {
 		"prefix": "function",
@@ -96,6 +100,34 @@
 			"function ${functionName}(${parameters}) {",
 			"\t$0",
 			"}"
+		]
+	},
+	"String Replace Once": {
+		"prefix": "replaceonce",
+		"body": "sub(${regexp}, ${replacement}, ${string})"
+	},
+	"String Replace All": {
+		"prefix": "replace",
+		"body": "gsub(${regexp}, ${replacement}, ${string})"
+	},
+	"Read File": {
+		"prefix": "readfile",
+		"body": [
+			"${fileName} = \"${filePath}\";",
+			"while((getline ${line} < ${fileName}) > 0) {",
+			"\t$0",
+			"}",
+			"close(${fileName});"
+		]
+	},
+	"Command": {
+		"prefix": "command",
+		"body": [
+			"${commandName} = \"${command}\";",
+			"while((${commandName} | getline ${line}) > 0) {",
+			"\t$0",
+			"}",
+			"close(${commandName});"
 		]
 	}
 
