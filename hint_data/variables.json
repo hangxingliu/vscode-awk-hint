@@ -21,7 +21,7 @@
     "set": "auto-set",
     "name": "ENVIRON",
     "onlyGAWK": false,
-    "desc": "An associative array containing the values of the environment.  The array\nindices are the environment variable names; the elements are the values of\nthe particular environment variables.  For example,\nENVIRON[\"HOME\"] might be \"/home/arnold\".  Changing this array\ndoes not affect the environment passed on to any programs that\nawk may spawn via redirection or the system() function.\n(In a future version of gawk, it may do so.)\n"
+    "desc": "An associative array containing the values of the environment.  The array\nindices are the environment variable names; the elements are the values of\nthe particular environment variables.  For example,\nENVIRON[\"HOME\"] might be /home/arnold.\n"
   },
   {
     "set": "auto-set",
@@ -33,7 +33,7 @@
     "set": "auto-set",
     "name": "FILENAME",
     "onlyGAWK": false,
-    "desc": "The name of the current input file.  When no data files are listed\non the command line, awk reads from the standard input and\nFILENAME is set to \"-\".  FILENAME changes each\ntime a new file is read (see Reading Files).  Inside a BEGIN\nrule, the value of FILENAME is \"\", because there are no input\nfiles being processed yet.38 (d.c.) Note, though,\nthat using getline (see Getline) inside a BEGIN rule\ncan give FILENAME a value.\n"
+    "desc": "The name of the current input file.  When no data files are listed\non the command line, awk reads from the standard input and\nFILENAME is set to \"-\".  FILENAME changes each\ntime a new file is read (see Reading Files).  Inside a BEGIN\nrule, the value of FILENAME is \"\", because there are no input\nfiles being processed yet.39 (d.c.) Note, though,\nthat using getline (see Getline) inside a BEGIN rule\ncan give FILENAME a value.\n"
   },
   {
     "set": "auto-set",
@@ -105,7 +105,7 @@
     "set": "user-modified",
     "name": "FIELDWIDTHS",
     "onlyGAWK": true,
-    "desc": "A space-separated list of columns that tells gawk\nhow to split input with fixed columnar boundaries.\nAssigning a value to FIELDWIDTHS\noverrides the use of FS and FPAT for field splitting.\nSee Constant Size for more information.\n"
+    "desc": "A space-separated list of columns that tells gawk\nhow to split input with fixed columnar boundaries.\nStarting in version 4.2, each field width may optionally be\npreceded by a colon-separated value specifying the number of characters to skip\nbefore the field starts.\nAssigning a value to FIELDWIDTHS\noverrides the use of FS and FPAT for field splitting.\nSee Constant Size for more information.\n"
   },
   {
     "set": "user-modified",

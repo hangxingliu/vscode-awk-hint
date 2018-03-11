@@ -24,6 +24,12 @@
     "desc": "Return a true value if x is an array. Otherwise, return false.\n"
   },
   {
+    "set": "type",
+    "name": "typeof",
+    "usage": "typeof(x)",
+    "desc": "Return one of the following strings, depending upon the type of x:\n"
+  },
+  {
     "set": "bitwise",
     "name": "and",
     "usage": "and(v1, v2 [, …])",
@@ -62,8 +68,8 @@
   {
     "set": "time",
     "name": "mktime",
-    "usage": "mktime(datespec)",
-    "desc": "Turn datespec into a timestamp in the same form\nas is returned by systime().  It is similar to the function of the\nsame name in ISO C.  The argument, datespec, is a string of the form\n\"YYYY MM DD HH MM SS [DST]\".\nThe string consists of six or seven numbers representing, respectively,\nthe full year including century, the month from 1 to 12, the day of the month\nfrom 1 to 31, the hour of the day from 0 to 23, the minute from 0 to\n59, the second from 0 to 60,54\nand an optional daylight-savings flag.\n"
+    "usage": "mktime(datespec [, utc-flag ])",
+    "desc": "Turn datespec into a timestamp in the same form\nas is returned by systime().  It is similar to the function of the\nsame name in ISO C.  The argument, datespec, is a string of the form\n\"YYYY MM DD HH MM SS [DST]\".\nThe string consists of six or seven numbers representing, respectively,\nthe full year including century, the month from 1 to 12, the day of the month\nfrom 1 to 31, the hour of the day from 0 to 23, the minute from 0 to\n59, the second from 0 to 60,55\nand an optional daylight-savings flag.\n"
   },
   {
     "set": "time",
@@ -141,7 +147,7 @@
     "set": "string",
     "name": "patsplit",
     "usage": "patsplit(string, array [, fieldpat [, seps ] ]) #",
-    "desc": "Divide\nstring into pieces defined by fieldpat\nand store the pieces in array and the separator strings in the\nseps array.  The first piece is stored in\narray[1], the second piece in array[2], and so\nforth.  The third argument, fieldpat, is\na regexp describing the fields in string (just as FPAT is\na regexp describing the fields in input records).\nIt may be either a regexp constant or a string.\nIf fieldpat is omitted, the value of FPAT is used.\npatsplit() returns the number of elements created.\nseps[i] is\nthe separator string\nbetween array[i] and array[i+1].\nAny leading separator will be in seps[0].\n"
+    "desc": "Divide\nstring into pieces (or “fields”) defined by fieldpat\nand store the pieces in array and the separator strings in the\nseps array.  The first piece is stored in\narray[1], the second piece in array[2], and so\nforth.  The third argument, fieldpat, is\na regexp describing the fields in string (just as FPAT is\na regexp describing the fields in input records).\nIt may be either a regexp constant or a string.\nIf fieldpat is omitted, the value of FPAT is used.\npatsplit() returns the number of elements created.\nseps[i] is\nthe possibly null separator string\nafter array[i].\nThe possibly null leading separator will be in seps[0].\nSo a non-null string with n fields will have n+1 separators.\nA null string will not have neither fields nor separators.\n"
   },
   {
     "set": "string",
@@ -171,7 +177,7 @@
     "set": "string",
     "name": "substr",
     "usage": "substr(string, start [, length ])",
-    "desc": "Return a length-character-long substring of string,\nstarting at character number start.  The first character of a\nstring is character number one.48\nFor example, substr(\"washington\", 5, 3) returns \"ing\".\n"
+    "desc": "Return a length-character-long substring of string,\nstarting at character number start.  The first character of a\nstring is character number one.49\nFor example, substr(\"washington\", 5, 3) returns \"ing\".\n"
   },
   {
     "set": "string",
@@ -219,7 +225,7 @@
     "set": "number",
     "name": "rand",
     "usage": "rand()",
-    "desc": "Return a random number.  The values of rand() are\nuniformly distributed between zero and one.\nThe value could be zero but is never one.43\n"
+    "desc": "Return a random number.  The values of rand() are\nuniformly distributed between zero and one.\nThe value could be zero but is never one.44\n"
   },
   {
     "set": "number",

@@ -1,4 +1,6 @@
-/// <reference path="../vscode.d.ts" />
+//@ts-check
+/// <reference path="./index.d.ts" />
+
 let vscode = require('vscode');
 
 const HINT_DATA_FILES = {
@@ -15,9 +17,13 @@ const HOVER_INFO_VARIABLE = '**AWK Variable**';
 const HOVER_INFO_VARIABLE_GAWK = '**AWK Variable** (**GAWK**)';
 
 
-let funcCompletionItems = [],
-	varCompletionItems = [],
-	funcItems = [],
+/** @type {vscode.CompletionItem[]} */
+let funcCompletionItems = [];
+
+/** @type {vscode.CompletionItem[]} */
+let varCompletionItems = [];
+
+let funcItems = [],
 	varItems = [];
 
 function getTextBeforeCursor(document, position) {
@@ -36,18 +42,18 @@ function getTextAroundCursor(document, position) {
 }
 function isCursorInTheString(textBeforeCursor) {
 	// TODO 考虑上一行行末是否有 \ 字符, 如果有的话就还要检测上一行
-	if (textBeforeCursor.indexOf(QUOTES[0]) == -1 ||
+	if (textBeforeCursor.indexOf(QUOTES[0]) == -1 &&
 		textBeforeCursor.indexOf(QUOTES[1]) == -1) return false;
-	
-	let len = textBeforeCursor.length, i = -1, inStr = false, char, qType;
+
+	let len = textBeforeCursor.length, i = -1, inStr = '', char, qType;
 	while (++i < len) {
 		char = textBeforeCursor[i];
 		if (char == '\\')
 			i++;
 		else if ((qType = QUOTES.indexOf(char)) >= 0)
-			inStr = inStr == QUOTES[qType] ? false : QUOTES[qType];
+			inStr = inStr == QUOTES[qType] ? '' : QUOTES[qType];
 	}
-	return inStr;
+	return !!inStr;
 }
 function getFuncAndParamsInfoAroundCursor(textBeforeCursor) {
 	if (textBeforeCursor.indexOf('(') == -1) return false;
@@ -63,20 +69,18 @@ function loadHintData() {
 		let item = new vscode.CompletionItem(func.name, vscode.CompletionItemKind.Function);
 		item.documentation = func.usage + '\n' + func.desc;
 		item.detail = func.set;
-		item._filter = func.name;
 		funcCompletionItems.push(item);
 	});
 	varItems.forEach(v => {
 		let item = new vscode.CompletionItem(v.name, vscode.CompletionItemKind.Variable);
 		item.documentation = v.desc;
 		item.detail = v.set + (v.onlyGAWK ? '(GAWK) ' : '');
-		item._filter = v.name;
 		varCompletionItems.push(item);
 	});
 }
 function searchHintCompletionItems(keyword) {
-	return funcCompletionItems.filter(it => it._filter.startsWith(keyword))
-		.concat(varCompletionItems.filter(it => it._filter.startsWith(keyword)));
+	return funcCompletionItems.filter(it => it.label.startsWith(keyword))
+		.concat(varCompletionItems.filter(it => it.label.startsWith(keyword)));
 }
 function findHintItem(funcOrVarName) {
 	let item = funcItems.filter(it => it.name == funcOrVarName);
@@ -109,7 +113,7 @@ function activate(context) {
 		vscode.languages.registerHoverProvider(DOCUMENT_SELECTOR, {
 			provideHover: (document, position/*, token*/) => {
 				let beforeText = getTextBeforeCursor(document, position);
-				if (isCursorInTheString(beforeText)) return [];
+				if (isCursorInTheString(beforeText)) return null;
 				let textAround = getTextAroundCursor(document, position);
 				if (!textAround) return null;
 				let item = findHintItem(textAround);
@@ -124,7 +128,7 @@ function activate(context) {
 				]);
 			}
 		}));
-	
+
 	subscriptions.push(
 		vscode.languages.registerSignatureHelpProvider(DOCUMENT_SELECTOR, {
 			provideSignatureHelp: (document, position/*, token*/) => {
@@ -135,14 +139,14 @@ function activate(context) {
 				let info;
 				if (!(info = getFuncAndParamsInfoAroundCursor(beforeText))) return null;
 				let item = findHintFunctionItem(info[1])//info[1] === funcName;
-				if (!item) return null;	
+				if (!item) return null;
 				let res = new vscode.SignatureHelp();
 				res.activeSignature = 0;
 				res.signatures = [new vscode.SignatureInformation(item.usage, item.desc)];
 				return res;
 			}
 		}, '(,'));
-	
+
 }
 
 function deactivate() {
