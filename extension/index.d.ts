@@ -7,3 +7,19 @@ type AwkFunction = {
 	localVariables: string[];
 	location: number;
 };
+
+type FunctionHintData = {
+	name: string;
+	parameters: string;
+	isBuiltIn: boolean;
+	file: string;
+	location: number;
+	desc: string;
+};
+
+type VariableHintData = {
+	name: string;
+	isBuiltIn: boolean;
+	desc: string;
+	onlyGAwk: boolean;
+};
