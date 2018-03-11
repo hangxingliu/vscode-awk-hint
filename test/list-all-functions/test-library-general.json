@@ -1,0 +1,56 @@
+[{
+	"name": "mystrtonum",
+	"parameters": ["str"],
+	"localVariables": ["ret", "n", "i", "k", "c"],
+	"location": 115
+}, {
+	"name": "assert",
+	"parameters": ["condition", "string"],
+	"localVariables": ["tmp"],
+	"location": 1499
+},{
+	"name": "round",
+	"parameters": ["x"],
+	"localVariables": ["ival", "aval", "fraction"],
+	"location": 1789
+}, {
+	"name": "cliff_rand",
+	"parameters": [],
+	"localVariables": [],
+	"location": 2470
+}, {
+	"name": "_ord_init",
+	"parameters": [],
+	"localVariables": ["low", "high", "i", "t"],
+	"location": 2813
+}, {
+	"name": "ord",
+	"parameters": ["str"],
+	"localVariables": ["c"],
+	"location": 3260
+}, {
+	"name": "chr",
+	"parameters": [],
+	"localVariables": ["c"],
+	"location": 3377
+}, {
+	"name": "join",
+	"parameters": ["array", "start", "end", "sep"],
+	"localVariables": ["result", "i"],
+	"location": 3710
+}, {
+	"name": "getlocaltime",
+	"parameters": ["time"],
+	"localVariables": ["ret", "now", "i"],
+	"location": 5117
+}, {
+	"name": "readfile",
+	"parameters": ["file"],
+	"localVariables": ["tmp", "save_rs"],
+	"location": 6456
+}, {
+	"name": "shell_quote",
+	"parameters": ["s"],
+	"localVariables": ["SINGLE", "QSINGLE", "i", "X", "n", "ret"],
+	"location": 6668
+}]

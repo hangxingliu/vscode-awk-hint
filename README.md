@@ -1,5 +1,7 @@
 # AWK hint(auto-completion) for VS Code
 
+[![Build Status](https://travis-ci.org/hangxingliu/vscode-awk-hint.svg?branch=master)](https://travis-ci.org/hangxingliu/vscode-awk-hint)
+
 An **experimental** extension.   
 And the hint data generated from [The GNU Awk User’s Guide][gnu-awk-doc] by [scripts][doc-script]    
 You can report bug or send a feature suggestion in [Github Issues Page][issues].

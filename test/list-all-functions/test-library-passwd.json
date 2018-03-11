@@ -1,0 +1,26 @@
+[{
+	"name": "_pw_init",
+	"parameters": [],
+	"localVariables": ["oldfs", "oldrs", "olddol0", "pwcat", "using_fw", "using_fpat"],
+	"location": 163
+}, {
+	"name": "getpwnam",
+	"parameters": ["name"],
+	"localVariables": [],
+	"location": 810
+}, {
+	"name": "getpwuid",
+	"parameters": "uid",
+	"localVariables": [],
+	"location": 882
+}, {
+	"name": "getpwent",
+	"parameters": [],
+	"localVariables": [],
+	"location": 951
+}, {
+	"name": "endpwent",
+	"parameters": [],
+	"localVariables": [],
+	"location": 1076
+}]

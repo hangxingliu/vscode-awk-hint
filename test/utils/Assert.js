@@ -13,6 +13,8 @@ function Assert(value) {
 		throw new AssertionError({ message, expected, actual }) };
 
 	let chains = {
+		print,
+
 		isTrue, isFalse, isUndefind, equals, equalsInJSON, fieldsEqual,
 		differentFrom, greaterThan, lessThan,
 
@@ -27,6 +29,10 @@ function Assert(value) {
 	};
 	return chains;
 
+	function print() {
+		console.log(value);
+		return chains;
+	}
 
 	function isTrue() { return equals(true); }
 	function isFalse() { return equals(false); }

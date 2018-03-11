@@ -24,6 +24,22 @@
 			"name": "Attach to Process",
 			"address": "localhost",
 			"port": 5858
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "Mocha Tests",
+			"program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+			"args": [
+				"-u",
+				"tdd",
+				"--timeout",
+				"999999",
+				"--colors",
+				"--delay",
+				"test/**/*.js"
+			],
+			"internalConsoleOptions": "openOnSessionStart"
 		}
 	]
 }

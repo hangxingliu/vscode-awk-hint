@@ -26,7 +26,8 @@
 	],
 	"main": "./extension/main",
 	"scripts": {
-		"fetch-vscode-dts": "node ./extension/vscode.d.ts/FETCH.js"
+		"fetch-vscode-dts": "node ./extension/vscode.d.ts/FETCH.js",
+		"test": "node ./node_modules/.bin/_mocha test/**/*.js --delay"
 	},
 	"extensionDependencies": [
 		"luggage66.AWK"

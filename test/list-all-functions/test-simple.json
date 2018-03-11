@@ -1,0 +1,16 @@
+[{
+	"name": "thisisafunc",
+	"parameters": ["x", "y"],
+	"localVariables": [],
+	"location": 19
+}, {
+	"name": "funchaslocalvar",
+	"parameters": ["x", "y"],
+	"localVariables": ["tmp"],
+	"location": 65
+}, {
+	"name": "funcnoparamter",
+	"parameters": [],
+	"localVariables": ["tmp"],
+	"location": 193
+}]

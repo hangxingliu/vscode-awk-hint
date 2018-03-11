@@ -1,0 +1,6 @@
+[{
+	"name": "getopt",
+	"parameters": ["argc", "argv", "options"],
+	"localVariables": ["thisopt", "i"],
+	"location": 70
+}]

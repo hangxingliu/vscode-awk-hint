@@ -1,0 +1,31 @@
+[{
+	"name": "_gr_init",
+	"parameters": ["oldfs", "oldrs", "olddol0", "grcat"],
+	"localVariables": ["using_fw", "using_fpat", "n", "a", "i"],
+	"location": 216
+}, {
+	"name": "getgrnam",
+	"parameters": ["group"],
+	"localVariables": [],
+	"location": 1343
+}, {
+	"name": "getgrgid",
+	"parameters": ["gid"],
+	"localVariables": [],
+	"location": 1418
+}, {
+	"name": "getgruser",
+	"parameters": ["user"],
+	"localVariables": [],
+	"location": 1488
+}, {
+	"name": "getgrent",
+	"parameters": [],
+	"localVariables": [],
+	"location": 1568
+}, {
+	"name": "endgrent",
+	"parameters": [],
+	"localVariables": [],
+	"location": 1697
+}]

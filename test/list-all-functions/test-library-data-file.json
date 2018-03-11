@@ -1,0 +1,11 @@
+[{
+	"name": "function",
+	"parameters": [],
+	"localVariables": ["i"],
+	"location": 508
+}, {
+	"name": "disable_assigns",
+	"parameters": ["argc", "argv"],
+	"localVariables": ["i"],
+	"location": 1665
+}]

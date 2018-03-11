@@ -1,0 +1,16 @@
+[{
+	"name": "walk_array",
+	"parameters": ["arr", "name"],
+	"localVariables": ["i"],
+	"location": 69
+}, {
+	"name": "process_array",
+	"parameters": ["arr", "name", "process", "do_arrays"],
+	"localVariables": ["i", "new_name"],
+	"location": 417
+}, {
+	"name": "do_print",
+	"parameters": ["name", "element"],
+	"localVariables": [],
+	"location": 924
+}]
