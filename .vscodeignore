@@ -1,5 +1,4 @@
 icon/icon.svg
-test_awk_files/**
 utils/**
 extension/vscode.d.ts
 *.tgz
