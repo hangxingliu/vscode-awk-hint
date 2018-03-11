@@ -19,4 +19,15 @@ describe('hint data', () => {
 			.then(json => Assert(json).parseJSON().isObject()
 				.each(it => Assert(it).containsKeys('prefix', 'body'))));
 
+	it('# regexp.json', () =>
+		loadFile(__dirname, `../../hint-data/regexp.json`)
+			.then(json => Assert(json).parseJSON().isObject()
+				.containsKeys('escapeSequence', 'escapeSequenceGAwk', 'bracketExpression')
+				.each(it => Assert(it).isObject().each(desc => Assert(desc).isString()))));
+
+	it('# string.json', () =>
+		loadFile(__dirname, `../../hint-data/string.json`)
+			.then(json => Assert(json).parseJSON().isObject()
+				.containsKeys('escapeSequenceStyle')
+				.each(it => Assert(it).isObject().each(desc => Assert(desc).isString()))));
 });

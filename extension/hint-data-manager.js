@@ -16,8 +16,12 @@ function createHintDataManager() {
 	/** @type {VariableHintData[]} */
 	let builtInVariables = [];
 
+	/** @type {FunctionHintData[]} */
+	let userFunctions = [];
+
 	return {
 		loadBuiltIn,
+		setUserFunctions,
 		getAllCompletionItems,
 		searchCompletionItemsByPrefix,
 		getFunction, getVariable
@@ -39,20 +43,33 @@ function createHintDataManager() {
 		}));
 	}
 
+	/** @param {AwkFunction[]} awkFunctions */
+	function setUserFunctions(awkFunctions) {
+		userFunctions = awkFunctions.map(func => ({
+			name: func.name, parameters: func.parameters.join(', '),
+			desc: func.name + '(' + func.parameters.join(', ') + ')\n\n' + 'User defined function',
+			file: '', location: func.location, isBuiltIn: false
+		}));
+	}
+
 	function getAllCompletionItems() {
-		return generateCompletionItems(builtInFunctions, builtInVariables);
+		return generateCompletionItems([].concat(builtInFunctions, userFunctions), builtInVariables);
 	}
 
 	/** @param {string} prefix */
 	function searchCompletionItemsByPrefix(prefix) {
 		return generateCompletionItems(
-			builtInFunctions.filter(it => it.name.startsWith(prefix)),
+			builtInFunctions.filter(it => it.name.startsWith(prefix))
+				.concat(userFunctions.filter(it => it.name.startsWith(prefix))),
 			builtInVariables.filter(it => it.name.startsWith(prefix)));
 	}
 
 	/** @param {string} funcName */
 	function getFunction(funcName) {
 		for (let func of builtInFunctions)
+			if (func.name == funcName)
+				return func;
+		for (let func of userFunctions)
 			if (func.name == funcName)
 				return func;
 		return null;

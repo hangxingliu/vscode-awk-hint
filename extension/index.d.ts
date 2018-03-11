@@ -23,3 +23,9 @@ type VariableHintData = {
 	desc: string;
 	onlyGAwk: boolean;
 };
+
+type RegexpHintData = {
+	escapeSequence: { [name: string]: string };
+	escapeSequenceGAwk: { [name: string]: string };
+	bracketExpression: { [name: string]: string };
+};

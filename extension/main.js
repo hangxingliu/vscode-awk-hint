@@ -3,6 +3,8 @@
 
 let vscode = require('vscode'),
 	{ createHintDataManager } = require('./hint-data-manager'),
+	{ createHintRegexpManager } = require('./hint-regexp-manager'),
+	{ createHintStringManager } = require('./hint-string-manager'),
 	{ createAwkParser, InputType } = require('./parser/awk');
 
 const DOCUMENT_SELECTOR = ['awk'];
@@ -11,14 +13,18 @@ const HOVER_INFO_FUNCTION = '**AWK Function**';
 const HOVER_INFO_VARIABLE = '**AWK Variable**';
 const HOVER_INFO_VARIABLE_GAWK = '**AWK Variable** (**GAWK**)';
 
-let manager = createHintDataManager();
+let manager = createHintDataManager(),
+	regexpManager = createHintRegexpManager(),
+	stringManager = createHintStringManager();
 
+/** @returns {string} */
 function getTextBeforeCursor(document, position) {
     var start = new vscode.Position(position.line, 0);
     var range = new vscode.Range(start, position);
     return document.getText(range);
 }
 
+/** @returns {string} */
 function getTextAroundCursor(document, position) {
 	let lineText = document.lineAt(position).text,
 		pos = position.character;
@@ -31,15 +37,36 @@ function getTextAroundCursor(document, position) {
 
 function activate(context) {
 	let subscriptions = context.subscriptions;
+
 	manager.loadBuiltIn();
+	regexpManager.load();
+	stringManager.load();
+
 	subscriptions.push(
 		vscode.languages.registerCompletionItemProvider(DOCUMENT_SELECTOR, {
 			provideCompletionItems: (document, position/*, token*/) => {
 				let parser = createAwkParser(document.getText());
 				let inputType = parser.getInputType(document.offsetAt(position));
+				if (inputType == InputType.Regex) {
+					let beforeText = getTextBeforeCursor(document, position);
+					if (beforeText.match(/[^\\]\\$/))
+						return regexpManager.getEscapeCompletionItems();
+					if (beforeText.match(/\[:\w*$/))
+						return regexpManager.getBracketExpressionCompletionItems();
+					return null;
+				} else if (inputType == InputType.String) {
+					let beforeText = getTextBeforeCursor(document, position);
+					let indexOf = beforeText.lastIndexOf('\\0');
+					if (indexOf < 0) return null;
+					if ("033".startsWith(beforeText.slice(indexOf + 1)))
+						return stringManager.get();
+					return null;
+				}
+
 				if (inputType != InputType.KeywordOrIdentifier)
 					return null;
 
+				manager.setUserFunctions(parser.listAllFunctions());
 				let beforeText = getTextBeforeCursor(document, position);
 				let keyword = (beforeText.match(/^.*?\b(\w*)$/) || ['', ''])[1];
 				if (!keyword)
@@ -47,8 +74,7 @@ function activate(context) {
 				return manager.searchCompletionItemsByPrefix(keyword);
 			},
 			resolveCompletionItem: (item/*, token*/) => item
-		}
-	));
+		}, ':\\'));
 
 	subscriptions.push(
 		vscode.languages.registerHoverProvider(DOCUMENT_SELECTOR, {
@@ -62,6 +88,7 @@ function activate(context) {
 				if (!textAround)
 					return null;
 
+				manager.setUserFunctions(parser.listAllFunctions());
 				let item = manager.getFunction(textAround) || manager.getVariable(textAround);
 				if (!item)
 					return null;
@@ -98,6 +125,7 @@ function activate(context) {
 				if (!matched)
 					return null;
 
+				manager.setUserFunctions(parser.listAllFunctions());
 				let item = manager.getFunction(matched[1]);
 				if (!item)
 					return null;

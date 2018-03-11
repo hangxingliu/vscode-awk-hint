@@ -1,0 +1,35 @@
+{
+	"escapeSequence": {
+		"a": "The “alert” character, Ctrl-g, ASCII code 7 (BEL). (This often makes some sort of audible noise.)",
+		"b": "Backspace, Ctrl-h, ASCII code 8 (BS).",
+		"f": "Formfeed, Ctrl-l, ASCII code 12 (FF).",
+		"n": "Newline, Ctrl-j, ASCII code 10 (LF).",
+		"r": "Carriage return, Ctrl-m, ASCII code 13 (CR).",
+		"t": "Horizontal TAB, Ctrl-i, ASCII code 9 (HT).",
+		"v": "Vertical TAB, Ctrl-k, ASCII code 11 (VT)."
+	},
+	"escapeSequenceGAwk": {
+		"s": "Matches any whitespace character. Think of it as shorthand for ‘[[:space:]]’.",
+		"S": "Matches any character that is not whitespace. Think of it as shorthand for ‘[^[:space:]]’.",
+		"w": "Matches any word-constituent character—that is, it matches any letter, digit, or underscore. Think of it as shorthand for ‘[[:alnum:]_]’.",
+		"W": "Matches any character that is not word-constituent. Think of it as shorthand for ‘[^[:alnum:]_]’.",
+		"<": "Matches the empty string at the beginning of a word. For example, /\\<away/ matches ‘away’ but not ‘stowaway’.",
+		">": "Matches the empty string at the end of a word. For example, /stow\\>/ matches ‘stow’ but not ‘stowaway’.",
+		"y": "Matches the empty string at either the beginning or the end of a word (i.e., the word boundary). For example, ‘\\yballs?\\y’ matches either ‘ball’ or ‘balls’, as a separate word.",
+		"B": "Matches the empty string that occurs between two word-constituent characters. For example, /\\Brat\\B/ matches ‘crate’, but it does not match ‘dirty rat’. ‘\\B’ is essentially the opposite of ‘\\y’."
+	},
+	"bracketExpression": {
+		"alnum": "Alphanumeric characters",
+		"alpha": "Alphabetic characters",
+		"blank": "Space and TAB characters",
+		"cntrl": "Control characters",
+		"digit": "Numeric characters",
+		"graph": "Characters that are both printable and visible (a space is printable but not visible, whereas an ‘a’ is both)",
+		"lower": "Lowercase alphabetic characters",
+		"print": "Printable characters (characters that are not control characters)",
+		"punct": "Punctuation characters (characters that are not letters, digits, control characters, or space characters)",
+		"space": "Space characters (such as space, TAB, and formfeed, to name a few)",
+		"upper": "Uppercase alphabetic characters",
+		"xdigit": "Characters that are hexadecimal digits"
+	}
+}

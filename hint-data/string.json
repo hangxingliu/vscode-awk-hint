@@ -1,0 +1,48 @@
+{
+	"escapeSequenceStyle": {
+		"0m": "Reset",
+		"1m": "Bold",
+		"2m": "Dim",
+		"3m": "Italic",
+		"4m": "Underline",
+		"8m": "Hidden",
+
+		"30m": "Black",
+		"31m": "Red",
+		"32m": "Green",
+		"33m": "Yellow",
+		"34m": "Blue",
+		"35m": "Magenta",
+		"36m": "Cyan",
+		"37m": "Light gray",
+		"90m": "Dark gray",
+		"91m": "Light red",
+		"92m": "Light green",
+		"93m": "Light yellow",
+		"94m": "Light blue",
+		"95m": "Light magenta",
+		"96m": "Light cyan",
+		"97m": "White",
+
+		"40m": "Background Black",
+		"41m": "Background Red",
+		"42m": "Background Green",
+		"43m": "Background Yellow",
+		"44m": "Background Blue",
+		"45m": "Background Magenta",
+		"46m": "Background Cyan",
+		"47m": "Background Light gray",
+		"100m": "Background Dark gray",
+		"101m": "Background Light red",
+		"102m": "Background Light green",
+		"103m": "Background Light yellow",
+		"104m": "Background Light blue",
+		"105m": "Background Light magenta",
+		"106m": "Background Light cyan",
+		"107m": "Background White",
+
+		"38;5;m": "256 Colors",
+		"48;5;m": "Background 256 Colors"
+
+	}
+}
