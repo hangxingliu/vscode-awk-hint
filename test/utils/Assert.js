@@ -22,7 +22,8 @@ function Assert(value) {
 		isArray, length,
 		containsKeys,
 
-		allKeys, allKeyValueTuples, child, sort, convertBy,
+		allKeys, allKeyValueTuples, child, sort, parseJSON, each,
+		convertBy,
 
 		// aliases:
 		field: child
@@ -114,6 +115,23 @@ function Assert(value) {
 	function child(fieldName) {
 		containsKeys(fieldName);
 		return convertBy(value => value[fieldName]);
+	}
+
+	/** @param {(value: any, key: string) => any} handler */
+	function each(handler) {
+		for (let k in value)
+			handler(value[k], k);
+		return chains;
+	}
+
+	function parseJSON() {
+		let object = void 0;
+		try {
+			object = JSON.parse(value);
+		} catch (ex) {
+			throwAsserionError('Could not parse JSON', `A valid JSON`, `Invalid JSON: ${ex.message}`);
+		}
+		return Assert(object);
 	}
 
 	/** @param {(any) => any} handler */

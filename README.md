@@ -27,7 +27,7 @@ You can report bug or send a feature suggestion in [Github Issues Page][issues].
 
 ### 1. Supporting me coffee via Paypal
 
-[Supporting me coffee](paypal) could encourage me to make my vscode extensions better and better!
+[Supporting me coffee][paypal] could encourage me to make my vscode extensions better and better!
 (and add more and more features).
 
 ### 2. Submit issue on Github
