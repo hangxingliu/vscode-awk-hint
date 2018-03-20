@@ -62,7 +62,17 @@
 				"language": "awk",
 				"path": "./hint-data/snippets.json"
 			}
-		]
+		],
+		"configuration": {
+			"title": "AWK hint configurations",
+			"properties": {
+				"awk-hint.completeEscapedChar": {
+					"type": "boolean",
+					"default": true,
+					"description": "Enable completion for escaped char in string and regexp"
+				}
+			}
+		}
 	},
 	"__metadata": {
 		"id": "d7c1de53-6da0-44d8-a411-5c1b8441a339",

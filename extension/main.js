@@ -13,6 +13,8 @@ const HOVER_INFO_FUNCTION = '**AWK Function**';
 const HOVER_INFO_VARIABLE = '**AWK Variable**';
 const HOVER_INFO_VARIABLE_GAWK = '**AWK Variable** (**GAWK**)';
 
+let enableCompleteEscapedChar = false;
+
 let manager = createHintDataManager(),
 	regexpManager = createHintRegexpManager(),
 	stringManager = createHintStringManager();
@@ -35,6 +37,11 @@ function getTextAroundCursor(document, position) {
 	return beforeText + afterText;
 }
 
+function loadConfigurations() {
+	enableCompleteEscapedChar =
+		vscode.workspace.getConfiguration('awk-hint').get('completeEscapedChar', true);
+}
+
 function activate(context) {
 	let subscriptions = context.subscriptions;
 
@@ -42,25 +49,32 @@ function activate(context) {
 	regexpManager.load();
 	stringManager.load();
 
+	loadConfigurations();
+	subscriptions.push(
+		vscode.workspace.onDidChangeConfiguration(loadConfigurations));
+
 	subscriptions.push(
 		vscode.languages.registerCompletionItemProvider(DOCUMENT_SELECTOR, {
 			provideCompletionItems: (document, position/*, token*/) => {
 				let parser = createAwkParser(document.getText());
 				let inputType = parser.getInputType(document.offsetAt(position));
-				if (inputType == InputType.Regex) {
-					let beforeText = getTextBeforeCursor(document, position);
-					if (beforeText.match(/[^\\]\\$/))
-						return regexpManager.getEscapeCompletionItems();
-					if (beforeText.match(/\[:\w*$/))
-						return regexpManager.getBracketExpressionCompletionItems();
-					return null;
-				} else if (inputType == InputType.String) {
-					let beforeText = getTextBeforeCursor(document, position);
-					let indexOf = beforeText.lastIndexOf('\\0');
-					if (indexOf < 0) return null;
-					if ("033".startsWith(beforeText.slice(indexOf + 1)))
-						return stringManager.get();
-					return null;
+
+				if (enableCompleteEscapedChar) {
+					if (inputType == InputType.Regex) {
+						let beforeText = getTextBeforeCursor(document, position);
+						if (beforeText.match(/[^\\]\\$/))
+							return regexpManager.getEscapeCompletionItems();
+						if (beforeText.match(/\[:\w*$/))
+							return regexpManager.getBracketExpressionCompletionItems();
+						return null;
+					} else if (inputType == InputType.String) {
+						let beforeText = getTextBeforeCursor(document, position);
+						let indexOf = beforeText.lastIndexOf('\\0');
+						if (indexOf < 0) return null;
+						if ("033".startsWith(beforeText.slice(indexOf + 1)))
+							return stringManager.get();
+						return null;
+					}
 				}
 
 				if (inputType != InputType.KeywordOrIdentifier)
