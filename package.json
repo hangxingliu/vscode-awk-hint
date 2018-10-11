@@ -16,7 +16,7 @@
 	},
 	"categories": [
 		"Snippets",
-		"Languages"
+		"Programming Languages"
 	],
 	"keywords": [
 		"vscode",
@@ -41,8 +41,8 @@
 		"eslint": "^4.18.2",
 		"fs-extra": "^5.0.0",
 		"mocha": "^5.0.4",
-		"request": "^2.83.0",
-		"vscode": "^1.1.0"
+		"request": "^2.88.0",
+		"vscode": "^1.1.21"
 	},
 	"dependencies": {},
 	"repository": {

@@ -60,7 +60,7 @@ Project structure:
 
 ## Author
 
-[LiuYue(hangxingliu)](https://github.com/hangxingliu)
+[Liu Yue @hangxingliu](https://github.com/hangxingliu)
 
 [gnu-awk-doc]: https://www.gnu.org/software/gawk/manual/gawk.html
 [doc-script]: https://github.com/hangxingliu/vscode-awk-hint/tree/master/utils
